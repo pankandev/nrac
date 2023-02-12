@@ -14,11 +14,6 @@
             return;
         }
         const playlist = new YoutubePlaylist('PL4ZKZLiSWIFbcbUxMyKyPr_3S67IYoSXa');
-        if (!playlist) {
-            console.warn('Playlist not found');
-            loaded = true;
-            return;
-        }
         player = await PlaylistPlayer.create(container, playlist);
         loaded = true;
     }

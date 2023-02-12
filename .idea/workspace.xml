@@ -4,31 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d772a54d-1242-456d-8002-01f697b5424a" name="Changes" comment="refactor: replaced angular with svelte and tauri">
-      <change afterPath="$PROJECT_DIR$/src/app.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/class/+page.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/youtube.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/+layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+layout.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/+layout.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+layout.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+page.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/+page.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/Counter.svelte" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/Header.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Header.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/about/+page.svelte" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/about/+page.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/sverdle/+page.server.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/sverdle/+page.svelte" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/sverdle/game.test.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/sverdle/game.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/sverdle/how-to-play/+page.svelte" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/sverdle/how-to-play/+page.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/sverdle/reduced-motion.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/sverdle/words.server.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/svelte.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/svelte.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" />
+    <list default="true" id="d772a54d-1242-456d-8002-01f697b5424a" name="Changes" comment="feat: add youtube playlist player">
+      <change beforePath="$PROJECT_DIR$/src/routes/class/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/class/+page.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +113,7 @@
       <workItem from="1676052327516" duration="623000" />
       <workItem from="1676061332518" duration="10592000" />
       <workItem from="1676129075291" duration="2940000" />
-      <workItem from="1676252030382" duration="1230000" />
+      <workItem from="1676252030382" duration="1337000" />
     </task>
     <task id="LOCAL-00001" summary="refactor: replaced angular with svelte and tauri">
       <created>1676011242761</created>
@@ -145,7 +122,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676011242761</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: add youtube playlist player">
+      <created>1676242520907</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1676242520907</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,6 +137,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="refactor: replaced angular with svelte and tauri" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: replaced angular with svelte and tauri" />
+    <MESSAGE value="feat: add youtube playlist player" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add youtube playlist player" />
   </component>
 </project>
