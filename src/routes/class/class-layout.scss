@@ -1,0 +1,74 @@
+.class-container {
+  .playlist-content {
+    height: 100vh;
+    max-height: 640px;
+
+    .playlist-content-player {
+    }
+
+    .playlist-content-title {
+      height: 3rem;
+      font-weight: 600;
+    }
+
+    .playlist-content-controls {
+      height: 7rem;
+
+      .player-controls-btn {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+
+  .playlist-items {
+    height: 100%;
+    overflow-y: auto;
+    width: 320px;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 4px;
+
+    .playlist-items-list {
+      display: flex;
+      flex-direction: column;
+
+      button.playlist-items-list-item {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+        text-align: start;
+
+        padding: 0.5rem 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 0.5rem;
+        background-color: rgba(255, 255, 255, 0.1);
+        background-blend-mode: multiply;
+        transition: background-color 0.2s ease-in-out;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        &:active {
+          background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        &.active {
+          background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .playlist-items-list-item-title {
+          flex: 1;
+          font-weight: 600;
+        }
+
+        .playlist-items-list-item-duration {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}

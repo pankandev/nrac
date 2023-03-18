@@ -4,8 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d772a54d-1242-456d-8002-01f697b5424a" name="Changes" comment="feat: add youtube playlist player">
+    <list default="true" id="d772a54d-1242-456d-8002-01f697b5424a" name="Changes" comment="fix: remove unnecessary format">
+      <change afterPath="$PROJECT_DIR$/src/routes/class/class-layout.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/header.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/home.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/home.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/logo.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Header.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Header.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/class/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/class/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/youtube.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/youtube.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,9 +27,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="SCSS File" />
         <option value="+page.svelte" />
         <option value="TypeScript File" />
+        <option value="home" />
+        <option value="SCSS File" />
       </list>
     </option>
   </component>
@@ -55,11 +68,12 @@
       <recent name="C:\Users\pcamp\WebstormProjects\classroom-tube\src\routes" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\pcamp\WebstormProjects\classroom-tube\static\imgs" />
       <recent name="C:\Users\pcamp\WebstormProjects\classroom-tube\src\routes\class" />
       <recent name="C:\Users\pcamp\WebstormProjects\classroom-tube\src" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.start">
     <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
       <method v="2" />
     </configuration>
@@ -83,13 +97,25 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="JavaScript Debug.Angular Application" />
+      <item itemvalue="npm.start" />
       <item itemvalue="npm.build" />
       <item itemvalue="npm.dev" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.start" />
         <item itemvalue="npm.dev" />
         <item itemvalue="npm.build" />
       </list>
@@ -113,7 +139,11 @@
       <workItem from="1676052327516" duration="623000" />
       <workItem from="1676061332518" duration="10592000" />
       <workItem from="1676129075291" duration="2940000" />
-      <workItem from="1676252030382" duration="1337000" />
+      <workItem from="1676252030382" duration="2072000" />
+      <workItem from="1679119292375" duration="15000" />
+      <workItem from="1679119368235" duration="26000" />
+      <workItem from="1679119602845" duration="3205000" />
+      <workItem from="1679166283561" duration="4112000" />
     </task>
     <task id="LOCAL-00001" summary="refactor: replaced angular with svelte and tauri">
       <created>1676011242761</created>
@@ -129,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676242520907</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fix: remove unnecessary format">
+      <created>1676242601256</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1676242601256</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,6 +175,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="refactor: replaced angular with svelte and tauri" />
     <MESSAGE value="feat: add youtube playlist player" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add youtube playlist player" />
+    <MESSAGE value="fix: remove unnecessary format" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: remove unnecessary format" />
   </component>
 </project>

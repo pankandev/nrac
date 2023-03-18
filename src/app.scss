@@ -2,7 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+$fa-font-path: '@fortawesome/fontawesome-free/webfonts';
+@import "@fortawesome/fontawesome-free/scss/fontawesome";
+@import "@fortawesome/fontawesome-free/scss/solid";
 
 button.btn {
     @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
 }
+
+html {
+    @apply bg-gray-900 text-zinc-100;
+}
+
+html, body {
+    height: 100%;
+
+    .app, main {
+        height: 100%;
+    }
+}
+
+

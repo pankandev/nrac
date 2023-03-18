@@ -10,6 +10,7 @@ interface PlaylistItemThumbnail {
 }
 
 interface PlaylistItem {
+    id: string;
     snippet: {
         channelId: string;
         channelTitle: string;
@@ -113,6 +114,7 @@ export class YoutubePlaylist {
                 playsinline: 1,
                 controls: 1,
                 autoplay: 0,
+                rel: 0,
             },
         });
     }
@@ -147,11 +149,11 @@ export class PlaylistPlayer {
     private constructor(
         private readonly element: HTMLElement,
         public readonly playlist: YoutubePlaylist,
-        private readonly videosIds: PlaylistItem[],
+        private readonly items: PlaylistItem[],
     ) {
         this.player = playlist.embedInto(element);
         if (playlist.startVideoId) {
-            this.currentVideoIndex = videosIds.findIndex(video => video.snippet.resourceId.videoId === playlist.startVideoId);
+            this.currentVideoIndex = items.findIndex(video => video.snippet.resourceId.videoId === playlist.startVideoId);
         }
     }
 
@@ -172,19 +174,25 @@ export class PlaylistPlayer {
         );
     }
 
+    public items$(): Observable<PlaylistItem[]> {
+        return this.status$().pipe(
+            map(() => this.items),
+        );
+    }
+
     private statusUpdateSignal = new Subject<void>();
 
     private currentVideoIndex = -1;
 
     public async playNext(): Promise<void> {
-        const videosIds = this.videosIds.map(v => v.snippet.resourceId.videoId);
+        const videosIds = this.items.map(v => v.snippet.resourceId.videoId);
         this.currentVideoIndex = (this.currentVideoIndex + 1) % videosIds.length;
         await this.player.loadVideoById(videosIds[this.currentVideoIndex]);
         this.statusUpdateSignal.next();
     }
 
     public async playPrevious(): Promise<void> {
-        const videosIds = this.videosIds.map(v => v.snippet.resourceId.videoId);
+        const videosIds = this.items.map(v => v.snippet.resourceId.videoId);
         this.currentVideoIndex--;
         if (this.currentVideoIndex < 0) {
             this.currentVideoIndex = videosIds.length - 1;
@@ -193,8 +201,18 @@ export class PlaylistPlayer {
         this.statusUpdateSignal.next();
     }
 
+    public async playVideo(videoId: string): Promise<void> {
+        this.currentVideoIndex = this.items.findIndex(item => item.id === videoId);
+        if (this.currentVideoIndex < 0) {
+            this.currentVideoIndex = 0;
+        }
+        const videosIds = this.items.map(v => v.snippet.resourceId.videoId);
+        await this.player.loadVideoById(videosIds[this.currentVideoIndex]);
+        this.statusUpdateSignal.next();
+    }
+
     public get currentItem(): PlaylistItem | null {
-        return this.videosIds[this.currentVideoIndex] || null;
+        return this.items[this.currentVideoIndex] || null;
     }
 
     public async resume(): Promise<void> {
