@@ -9,7 +9,7 @@
 
     $: loaded = !!player && !!course;
 
-    $: items$ = (course as CourseState)?.watchItems();
+    $: items$ = (course as CourseState)?.watchItems() ?? EMPTY;
 </script>
 
 <div class="playlist-items flex flex-col items-center">
@@ -22,8 +22,21 @@
                                 class="playlist-items-list-item flex flex-row justify-start items-center m-1"
                                 class:active={item.id === $currentItem$.videoId}
                                 on:click={() => player.playVideo(item.id)}
+                                class:completed={item.data.completed}
                         >
-                            {item.data.snippet.title}
+                            <span class="flex flex-grow">
+                                {item.data.title}
+                            </span>
+                            {#if item.data.completed}
+                                <button class="progress-switch completed" on:click|stopPropagation={() => course?.markAsNotCompleted(item.id)}>
+                                    <i class="fas fa-check text-green-500"></i>
+                                </button>
+                            {/if}
+                            {#if !item.data.completed}
+                                <button class="progress-switch" on:click|stopPropagation={() => course?.markAsCompleted(item.id)}>
+                                    <i class="fas fa-check text-white"></i>
+                                </button>
+                            {/if}
                         </button>
                     {/if}
                 {/each}

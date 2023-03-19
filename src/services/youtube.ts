@@ -7,7 +7,7 @@ import type {CourseItem} from "../models/courses";
 import type {CourseState} from "./courses";
 
 
-interface PlaylistItem {
+export interface PlaylistItem {
     id: string;
     snippet: PlaylistItemSnippet;
 }

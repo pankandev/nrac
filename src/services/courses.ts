@@ -1,7 +1,7 @@
 import {Database, OADocument} from "./db/database";
 import {COLLECTIONS} from "./db/collections";
 import type {Course, CourseItem} from "../models/courses";
-import type {YoutubePlaylist} from "./youtube";
+import type {PlaylistItem, YoutubePlaylist} from "./youtube";
 import {from, lastValueFrom, map, Observable, switchMap} from "rxjs";
 
 
@@ -34,21 +34,57 @@ export class CourseState {
 
         const db = await this.waitDb;
         const courses = db.collection(COLLECTIONS.COURSES);
+
+        const item = await courses.get(this.id);
+        if (item) {
+            return true;
+        }
+
         await courses.set(this.id, course);
 
+        for (const video of this.parsePlaylistItems(videos)) {
+            await courses.subcollection(this.id, COLLECTIONS.COURSE_ITEMS).set(video.videoId, video);
+        }
+
+        return true;
+    }
+
+    private findCommonPrefix(names: string[]): string {
+        return names.reduce((prefix: string | null, name): string | null => {
+            if (prefix === null) {
+                return name;
+            }
+            for (let i = 0; i < prefix.length; i++) {
+                if (prefix[i].toLowerCase() !== name[i].toLowerCase()) {
+                    return prefix.substring(0, i);
+                }
+            }
+            return prefix;
+        }, null) ?? '';
+    }
+
+    private parsePlaylistItems(items: PlaylistItem[]): CourseItem[] {
+        const commonPrefix = this.findCommonPrefix(items.map(item => item.snippet.title));
+
+        const courseItems: CourseItem[] = [];
         let order = 0;
-        for (const video of videos) {
-            await courses.subcollection(this.id, COLLECTIONS.COURSE_ITEMS).set(video.id, {
-                description: video.snippet.description,
+        for (const item of items) {
+            const videoId = item.snippet.resourceId.videoId;
+            const prefix = commonPrefix === '' ? '' : commonPrefix + ' ';
+            const title = prefix.length > 0 ? item.snippet.title.substring(prefix.length - 1) : item.snippet.title;
+            courseItems.push({
+                videoId,
+                description: item.snippet.description,
                 durationSeconds: 0,
-                thumbnailUrl: video.snippet.thumbnails.default.url,
-                title: video.snippet.title,
-                videoId: video.id,
-                snippet: video.snippet,
-                order: ++order,
+                snippet: item.snippet,
+                thumbnailUrl: item.snippet.thumbnails.default.url,
+                title,
+                order: order++,
+                completed: false,
+                leftAtSeconds: 0,
             });
         }
-        return true;
+        return courseItems;
     }
 
     public watch(): Observable<OADocument<Course> | null> {
@@ -84,5 +120,19 @@ export class CourseState {
                 map(items => items.sort((a, b) => a.data.order - b.data.order)),
             )
         );
+    }
+
+    async markAsCompleted(id: string): Promise<void> {
+        const db = await this.waitDb;
+        await db.collection(COLLECTIONS.COURSES).subcollection(this.id, COLLECTIONS.COURSE_ITEMS).update(id, {
+            completed: true,
+        });
+    }
+
+    async markAsNotCompleted(id: string): Promise<void> {
+        const db = await this.waitDb;
+        await db.collection(COLLECTIONS.COURSES).subcollection(this.id, COLLECTIONS.COURSE_ITEMS).update(id, {
+            completed: false,
+        });
     }
 }

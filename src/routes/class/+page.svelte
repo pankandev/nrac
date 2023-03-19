@@ -4,6 +4,7 @@
     import {CoursePlayer, YoutubePlaylist} from "../../services/youtube.ts";
     import PlaylistItems from "./PlaylistItems.svelte";
     import {CourseState} from "../../services/courses";
+    import type {CourseItem} from "../../models/courses";
 
     let container: HTMLDivElement | null = null;
     let player: CoursePlayer | null = null;
@@ -32,7 +33,12 @@
         }
         const playlist = new YoutubePlaylist(playlistId);
         course = new CourseState(playlist);
-        await course.enroll();
+        const enrolled = await course.enroll();
+        if (!enrolled) {
+            console.warn('Course not enrolled');
+            loaded = true;
+            return;
+        }
         player = await CoursePlayer.create(container, course);
         loaded = true;
     }
@@ -50,7 +56,10 @@
         refreshPlayer();
     }
 
-    async function next(player: CoursePlayer): Promise<void> {
+    async function next(player: CoursePlayer, item?: CourseItem): Promise<void> {
+        if (item && course) {
+            await course.markAsCompleted(item.videoId);
+        }
         await player.playNext();
         refreshPlayer();
     }
@@ -84,7 +93,6 @@
                             <i class="fas fa-step-backward"></i>
                         </button>
 
-
                         <div class="mx-2">
                             {#if ($isPlaying$)}
                                 <button class="player-controls-btn" on:click={pause(player)}>
@@ -97,9 +105,17 @@
                             {/if}
                         </div>
 
-                        <button class="player-controls-btn" on:click={next(player)} disabled='{!$hasNext$}'>
-                            <i class="fas fa-step-forward"></i>
-                        </button>
+                        {#if ($currentItem$)}
+                            {#if ($currentItem$.completed)}
+                                <button class="player-controls-btn" on:click={next(player)} disabled='{!$hasNext$}'>
+                                    <i class="fas fa-step-forward"></i>
+                                </button>
+                            {:else}
+                                <button class="player-controls-btn" on:click={next(player, $currentItem$)} disabled='{!$hasNext$}'>
+                                    <i class="fas fa-check"></i>
+                                </button>
+                            {/if}
+                        {/if}
                     </div>
                 {/if}
 

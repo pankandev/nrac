@@ -1,6 +1,6 @@
 import {AceBase, DataReference, DataSnapshot} from "acebase";
 import {DateTime} from "luxon";
-import {from, map, Observable} from "rxjs";
+import {from, map, Observable, of, startWith, switchMap} from "rxjs";
 
 export type Modeled<T extends object> = T & {
     createdTime?: string;
@@ -20,8 +20,11 @@ export class OADocument<T extends object> {
     ) {
     }
 
-    public static fromSnapshot<T extends object>(snap: DataSnapshot): OADocument<T> {
+    public static fromSnapshot<T extends object>(snap: DataSnapshot): OADocument<T> | null {
         const data: Modeled<T> = snap.val();
+        if (!data) {
+            return null;
+        }
         const createdTime = data.createdTime ? DateTime.fromISO(data.createdTime) : DateTime.now();
         const updatedTime = data.updatedTime ? DateTime.fromISO(data.updatedTime) : DateTime.now();
         return new OADocument<T>(snap.ref, data, createdTime, updatedTime);
@@ -94,7 +97,10 @@ export class Collection<T extends object> {
         const docs: OADocument<T>[] = [];
         await this.db.ref(this.path).forEach(
             snap => {
-                docs.push(OADocument.fromSnapshot<T>(snap));
+                const doc = OADocument.fromSnapshot<T>(snap);
+                if (doc) {
+                    docs.push(doc);
+                }
             }
         );
         return docs;
@@ -125,24 +131,33 @@ export class Collection<T extends object> {
             const handler = (snap: DataSnapshot) => {
                 const docs: OADocument<T>[] = [];
                 snap.forEach(snap => {
-                    docs.push(OADocument.fromSnapshot<T>(snap));
+                    const doc = OADocument.fromSnapshot<T>(snap)
+                    if (doc) {
+                        docs.push(doc);
+                    }
                     return true;
                 });
                 subscriber.next(docs);
             };
             ref.on("value", handler);
             return () => ref.off("value", handler);
-        });
+        }).pipe(
+            startWith(null),
+            switchMap(data => !data ? this.query() : of(data)),
+        );
     }
 
-    query(): Observable<OADocument<T>[]> {
+    query(limit = 100): Observable<OADocument<T>[]> {
         return from(
-            this.db.ref(this.path).query().get()
+            this.db.ref(this.path).query().take(limit).get()
         ).pipe(
             map(snaps => {
                 const docs: OADocument<T>[] = [];
                 snaps.forEach(snap => {
-                    docs.push(OADocument.fromSnapshot<T>(snap));
+                    const doc = OADocument.fromSnapshot<T>(snap)
+                    if (doc) {
+                        docs.push(doc);
+                    }
                     return true;
                 });
                 return docs;
@@ -154,7 +169,8 @@ export class Collection<T extends object> {
 export class Database {
     private constructor(
         private readonly db: AceBase,
-    ) {}
+    ) {
+    }
 
     public static readonly instance: Promise<Database> = new Promise<Database>((resolve, reject) => {
         Database.initDatabase().then(db => {
@@ -166,7 +182,7 @@ export class Database {
 
     private static initDatabase(): Promise<AceBase> {
         const db = AceBase.WithIndexedDB("classroom-tube", {
-            logLevel: "log",
+            logLevel: "warn",
         });
         return new Promise((resolve, reject) => {
             db.ready()

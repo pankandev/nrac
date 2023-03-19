@@ -62,10 +62,6 @@ export interface CourseItem {
     durationSeconds: number;
     snippet: PlaylistItemSnippet;
     order: number;
-}
-
-export interface CourseItemProgress {
-    videoId: string;
     leftAtSeconds: number;
     completed: boolean;
 }
