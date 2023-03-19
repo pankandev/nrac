@@ -1,6 +1,6 @@
 <svelte:head>
-    <title>Home</title>
-    <meta name="description" content="Svelte demo app"/>
+    <title>Open Academy</title>
+    <meta name="description" content="Open Academy is a free, open-source platform for online learning.">
 </svelte:head>
 
 <script lang="ts">

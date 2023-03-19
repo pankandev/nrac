@@ -1,15 +1,22 @@
 <script lang="ts">
     import './class-layout.scss';
     import {onMount} from 'svelte';
-    import {PlaylistPlayer, YoutubePlaylist} from "../../services/youtube.ts";
+    import {CoursePlayer, YoutubePlaylist} from "../../services/youtube.ts";
+    import PlaylistItems from "./PlaylistItems.svelte";
+    import {CourseState} from "../../services/courses";
 
     let container: HTMLDivElement | null = null;
-    let player: PlaylistPlayer | null = null;
-    $: isPlaying$ = player?.isPlaying$();
-    $: items$ = player?.items$();
+    let player: CoursePlayer | null = null;
+    let course: CourseState | null = null;
+    $: isPlaying$ = (player as CoursePlayer)?.isPlaying$();
+
+    $: hasPrevious$ = (player as CoursePlayer)?.hasPrevious$();
+    $: hasNext$ = (player as CoursePlayer)?.hasNext$();
+    $: currentItem$ = (player as CoursePlayer)?.currentItem$();
+
     let loaded = false;
 
-    async function init() {
+    async function init(): Promise<void> {
         if (!container) {
             console.warn('Container not found');
             loaded = true;
@@ -24,7 +31,9 @@
             return;
         }
         const playlist = new YoutubePlaylist(playlistId);
-        player = await PlaylistPlayer.create(container, playlist);
+        course = new CourseState(playlist);
+        await course.enroll();
+        player = await CoursePlayer.create(container, course);
         loaded = true;
     }
 
@@ -36,26 +45,31 @@
         player = player;
     }
 
-    async function previous(player: PlaylistPlayer): Promise<void> {
+    async function previous(player: CoursePlayer): Promise<void> {
         await player.playPrevious();
         refreshPlayer();
     }
 
-    async function next(player: PlaylistPlayer): Promise<void> {
+    async function next(player: CoursePlayer): Promise<void> {
         await player.playNext();
         refreshPlayer();
     }
 
-    async function pause(player: PlaylistPlayer): Promise<void> {
+    async function pause(player: CoursePlayer): Promise<void> {
         await player.pause();
         refreshPlayer();
     }
 
-    async function resume(player: PlaylistPlayer): Promise<void> {
+    async function resume(player: CoursePlayer): Promise<void> {
         await player.resume();
         refreshPlayer();
     }
 </script>
+
+<svelte:head>
+    <title>Open Academy - Class</title>
+    <meta name="description" content="Open Academy is a free, open-source platform for online learning.">
+</svelte:head>
 
 <section class="class-container flex flex-row h-full">
     <div class="playlist-content flex flex-col flex-grow">
@@ -65,9 +79,11 @@
             <div class="playlist-content-controls flex flex-row justify-center items-center">
                 {#if (player)}
                     <div class="flex flex-row justify-center">
-                        <button class="player-controls-btn" on:click={previous(player)}>
+
+                        <button class="player-controls-btn" on:click={previous(player)} disabled='{!$hasPrevious$}'>
                             <i class="fas fa-step-backward"></i>
                         </button>
+
 
                         <div class="mx-2">
                             {#if ($isPlaying$)}
@@ -81,37 +97,21 @@
                             {/if}
                         </div>
 
-                        <button class="player-controls-btn" on:click={next(player)}>
+                        <button class="player-controls-btn" on:click={next(player)} disabled='{!$hasNext$}'>
                             <i class="fas fa-step-forward"></i>
                         </button>
                     </div>
                 {/if}
 
             </div>
-            <div class="playlist-content-title flex flex-row justify-start items-center m-1 ml-3">
-                {player.currentItem.snippet.title}
-            </div>
+            {#if ($currentItem$)}
+                <div class="playlist-content-title flex flex-row justify-start items-center m-1 ml-3">
+                    {$currentItem$.snippet.title}
+                </div>
+            {/if}
         {:else}
             <div>Loading...</div>
         {/if}
     </div>
-    <div class="playlist-items flex flex-col items-center">
-        {#if (loaded)}
-            <div class="playlist-items-list flex flex-col">
-                {#if ($items$)}
-                    {#each $items$ as item}
-                        <button
-                                class="playlist-items-list-item flex flex-row justify-start items-center m-1"
-                                class:active={item.id === player.currentItem.id}
-                                on:click={() => player.playVideo(item.id)}
-                        >
-                            {item.snippet.title}
-                        </button>
-                    {/each}
-                {/if}
-            </div>
-        {:else}
-            <div>Loading...</div>
-        {/if}
-    </div>
+    <PlaylistItems player={player} course={course}/>
 </section>

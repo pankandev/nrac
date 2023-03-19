@@ -372,6 +372,11 @@
   resolved "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.11.tgz"
   integrity sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==
 
+"@types/luxon@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.npmjs.org/@types/luxon/-/luxon-3.2.0.tgz"
+  integrity sha512-lGmaGFoaXHuOLXFvuju2bfvZRqxAqkHPx9Y9IQdQABrinJJshJwfNCKV+u7rR3kJbiqfTF/NhOkcxxAFrObyaA==
+
 "@types/node@*", "@types/node@>= 14":
   version "18.13.0"
   resolved "https://registry.npmjs.org/@types/node/-/node-18.13.0.tgz"
@@ -499,6 +504,21 @@ abort-controller@^3.0.0:
   integrity sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==
   dependencies:
     event-target-shim "^5.0.0"
+
+acebase-core@^1.25.0:
+  version "1.25.1"
+  resolved "https://registry.npmjs.org/acebase-core/-/acebase-core-1.25.1.tgz"
+  integrity sha512-U6WY6QwhsXypqZQqt7kNxsLvjucJrcJM8TxOydv95+lJyBkv2UoURhwRjaWA9+0DNRfAOhUuPgjNxBhHShl4hg==
+  optionalDependencies:
+    rxjs ">= 5.x <= 7.x"
+
+acebase@^1.27.0:
+  version "1.27.0"
+  resolved "https://registry.npmjs.org/acebase/-/acebase-1.27.0.tgz"
+  integrity sha512-bnd8NhMrBg3jgbLRtMVRE9yahhSVm6mPGiwQis/gtpBORvJamlNbwQvv+xd6wA+K2SClvv23TkyLhBe7WLBqzA==
+  dependencies:
+    acebase-core "^1.25.0"
+    unidecode "^0.1.8"
 
 acorn-jsx@^5.3.2:
   version "5.3.2"
@@ -1930,6 +1950,11 @@ lru-cache@^7.4.4, lru-cache@^7.5.1, lru-cache@^7.7.1:
   resolved "https://registry.npmjs.org/lru-cache/-/lru-cache-7.14.1.tgz"
   integrity sha512-ysxwsnTKdAx96aTRdhDOCQfDgbHnt8SK0KY8SEjO0wHinhWOFTESbjVCMPbU1uGXg/ch4lifqx0wfjOawU2+WA==
 
+luxon@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.npmjs.org/luxon/-/luxon-3.3.0.tgz"
+  integrity sha512-An0UCfG/rSiqtAIiBPO0Y9/zAnHUZxAMiCpTd5h2smgsj7GGmcenvrvww2cqNA8/4A5ZrD1gJpHN2mIHZQF+Mg==
+
 magic-string@^0.27.0:
   version "0.27.0"
   resolved "https://registry.npmjs.org/magic-string/-/magic-string-0.27.0.tgz"
@@ -2768,7 +2793,7 @@ run-parallel@^1.1.9:
   dependencies:
     queue-microtask "^1.2.2"
 
-rxjs@^7.8.0:
+rxjs@^7.8.0, "rxjs@>= 5.x <= 7.x":
   version "7.8.0"
   resolved "https://registry.npmjs.org/rxjs/-/rxjs-7.8.0.tgz"
   integrity sha512-F2+gxDshqmIub1KdvZkaEfGDwLNpPvk9Fs6LD/MyQxNgMds/WH9OdDDXOmxUZpME+iSK3rQCctkL0DYyytUqMg==
@@ -3178,6 +3203,11 @@ undici@5.18.0:
   integrity sha512-1iVwbhonhFytNdg0P4PqyIAXbdlVZVebtPDvuM36m66mRw4OGrCm2MYynJv/UENFLdP13J1nPVQzVE2zTs1OeA==
   dependencies:
     busboy "^1.6.0"
+
+unidecode@^0.1.8:
+  version "0.1.8"
+  resolved "https://registry.npmjs.org/unidecode/-/unidecode-0.1.8.tgz"
+  integrity sha512-SdoZNxCWpN2tXTCrGkPF/0rL2HEq+i2gwRG1ReBvx8/0yTzC3enHfugOf8A9JBShVwwrRIkLX0YcDUGbzjbVCA==
 
 unique-filename@^2.0.0:
   version "2.0.1"

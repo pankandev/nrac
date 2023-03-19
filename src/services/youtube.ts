@@ -2,37 +2,14 @@ import PlayerFactory from "youtube-player";
 import type {YouTubePlayer} from "youtube-player/dist/types";
 import PlayerStates from "youtube-player/dist/constants/PlayerStates";
 import {distinctUntilChanged, map, type Observable, startWith, Subject, switchMap, timer} from "rxjs";
+import type {PlaylistItemSnippet, PlaylistSnippet} from "../models/courses";
+import type {CourseItem} from "../models/courses";
+import type {CourseState} from "./courses";
 
-interface PlaylistItemThumbnail {
-    url: string;
-    width: number;
-    height: number;
-}
 
 interface PlaylistItem {
     id: string;
-    snippet: {
-        channelId: string;
-        channelTitle: string;
-        description: string;
-        playlistId: string;
-        position: number;
-        publishedAt: string;
-        resourceId: {
-            videoId: string;
-            kind: string;
-        };
-        thumbnails: {
-            default: PlaylistItemThumbnail;
-            high: PlaylistItemThumbnail;
-            maxres: PlaylistItemThumbnail;
-            medium: PlaylistItemThumbnail;
-            standard: PlaylistItemThumbnail;
-        };
-        title: string;
-        videoOwnerChannelId: string;
-        videoOwnerChannelTitle: string;
-    }
+    snippet: PlaylistItemSnippet;
 }
 
 /**
@@ -119,50 +96,76 @@ export class YoutubePlaylist {
         });
     }
 
+    private async fetch<T>(url: URL): Promise<T> {
+        const response = await fetch(url.toString());
+        if (!response.ok) {
+            throw new Error(`Failed to fetch playlist: ${response.statusText}`);
+        }
+        return response.json();
+    }
+
+    /**
+     * Gets the playlist title and other metadata
+     *
+     * @returns - The playlist data
+     */
+    public async getPlaylist(): Promise<PlaylistSnippet | null> {
+        const url = new URL('https://content-youtube.googleapis.com/youtube/v3/playlists');
+        url.searchParams.set('part', 'snippet');
+        url.searchParams.set('id', this.id);
+        url.searchParams.set('key', YoutubePlaylist.API_KEY);
+
+        const json = await this.fetch<{
+            items: {
+                kind: 'youtube#playlist',
+                etag: string,
+                id: string,
+                snippet: PlaylistSnippet,
+            }[];
+        }>(url);
+        return json.items[0]?.snippet ?? null;
+    }
+
     /**
      * Gets the videos IDs in the playlist
      *
      * @returns - The video IDs
      */
-    public async getVideos(): Promise<PlaylistItem[] | null> {
+    public async getVideos(): Promise<PlaylistItem[]> {
         const url = new URL('https://content-youtube.googleapis.com/youtube/v3/playlistItems');
         url.searchParams.set('part', 'snippet');
         url.searchParams.set('maxResults', '50');
         url.searchParams.set('playlistId', this.id);
         url.searchParams.set('key', YoutubePlaylist.API_KEY);
 
-        const response = await fetch(url.toString());
-        if (!response.ok) {
-            if (response.status === 404) {
-                return null;
-            }
-            throw new Error(`Failed to fetch playlist: ${response.statusText}`);
-        }
-        const json = await response.json();
-        return json.items;
+        const json = await this.fetch<{
+            items: PlaylistItem[];
+        }>(url);
+        return json.items ?? [];
     }
 }
 
-export class PlaylistPlayer {
+export class CoursePlayer {
     private readonly player: YouTubePlayer;
 
     private constructor(
         private readonly element: HTMLElement,
-        public readonly playlist: YoutubePlaylist,
-        private readonly items: PlaylistItem[],
+        public readonly course: CourseState,
+        private readonly items: CourseItem[],
     ) {
-        this.player = playlist.embedInto(element);
-        if (playlist.startVideoId) {
-            this.currentVideoIndex = items.findIndex(video => video.snippet.resourceId.videoId === playlist.startVideoId);
+        this.player = course.playlist.embedInto(element);
+        if (course.playlist.startVideoId) {
+            this.currentVideoIndex = items.findIndex(video => video.snippet.resourceId.videoId === course.playlist.startVideoId);
         }
     }
 
-    public static async create(element: HTMLElement, playlist: YoutubePlaylist): Promise<PlaylistPlayer | null> {
-        const videos = await playlist.videos;
+    public static async create(element: HTMLElement, course: CourseState): Promise<CoursePlayer | null> {
+        const videos = await course.playlist.videos;
         if (!videos || videos.length === 0) {
             return null;
         }
-        const player = new PlaylistPlayer(element, playlist, videos);
+        const items = await course.getAllItems();
+        const player = new CoursePlayer(element, course, items.map(item => item.data));
         await player.playNext();
         return player;
     }
@@ -174,7 +177,7 @@ export class PlaylistPlayer {
         );
     }
 
-    public items$(): Observable<PlaylistItem[]> {
+    public items$(): Observable<CourseItem[]> {
         return this.status$().pipe(
             map(() => this.items),
         );
@@ -202,7 +205,7 @@ export class PlaylistPlayer {
     }
 
     public async playVideo(videoId: string): Promise<void> {
-        this.currentVideoIndex = this.items.findIndex(item => item.id === videoId);
+        this.currentVideoIndex = this.items.findIndex(item => item.videoId === videoId);
         if (this.currentVideoIndex < 0) {
             this.currentVideoIndex = 0;
         }
@@ -211,8 +214,8 @@ export class PlaylistPlayer {
         this.statusUpdateSignal.next();
     }
 
-    public get currentItem(): PlaylistItem | null {
-        return this.items[this.currentVideoIndex] || null;
+    public get currentItem(): CourseItem | null {
+        return this.items[this.currentVideoIndex] ?? null;
     }
 
     public async resume(): Promise<void> {
@@ -225,11 +228,34 @@ export class PlaylistPlayer {
         this.statusUpdateSignal.next();
     }
 
+    public currentItem$(): Observable<CourseItem | null> {
+        return this.statusUpdateSignal.pipe(
+            startWith(null),
+            map(() => this.currentItem),
+        );
+    }
+
     public status$(): Observable<PlayerStates> {
         return this.statusUpdateSignal.pipe(
             startWith(null),
             switchMap(() => timer(10, 100)),
             switchMap(() => this.player.getPlayerState()),
+            distinctUntilChanged(),
+        );
+    }
+
+    public hasPrevious$(): Observable<boolean> {
+        return this.statusUpdateSignal.pipe(
+            startWith(null),
+            map(() => this.currentVideoIndex > 0),
+            distinctUntilChanged(),
+        );
+    }
+
+    public hasNext$(): Observable<boolean> {
+        return this.statusUpdateSignal.pipe(
+            startWith(null),
+            map(() => this.currentVideoIndex < this.items.length - 1),
             distinctUntilChanged(),
         );
     }

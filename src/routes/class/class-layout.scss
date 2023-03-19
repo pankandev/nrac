@@ -14,11 +14,24 @@
     .playlist-content-controls {
       height: 7rem;
 
-      .player-controls-btn {
+      button.player-controls-btn {
         width: 3rem;
         height: 3rem;
         border-radius: 50%;
         background-color: rgba(255, 255, 255, 0.1);
+        transition: background-color 0.2s ease-in-out;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        &:active {
+          background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        &[disabled] {
+          background-color: rgba(255, 255, 255, 0.02);
+        }
       }
     }
   }
@@ -37,7 +50,7 @@
       button.playlist-items-list-item {
         display: flex;
         flex-direction: row;
-        justify-content: start;
+        justify-content: flex-start;
         align-items: center;
         text-align: start;
 
