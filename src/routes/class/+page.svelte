@@ -4,6 +4,7 @@
     import {CoursePlayer, YoutubePlaylist} from "../../services/youtube.ts";
     import PlaylistItems from "./PlaylistItems.svelte";
     import {CourseState} from "../../services/courses";
+    import Notes from './Notes.svelte';
     import type {CourseItem} from "../../models/courses";
 
     let container: HTMLDivElement | null = null;
@@ -82,8 +83,14 @@
 
 <section class="class-container flex flex-row h-full">
     <div class="playlist-content flex flex-col flex-grow">
-        <div class="playlist-content-player" id="player" bind:this={container}>
+        <div class="playlist-content-player" id="player">
+            <div bind:this={container}></div>
         </div>
+        {#if ($currentItem$)}
+            <div class="playlist-content-title flex flex-row justify-center items-center">
+                {$currentItem$.title}
+            </div>
+        {/if}
         {#if (loaded)}
             <div class="playlist-content-controls flex flex-row justify-center items-center">
                 {#if (player)}
@@ -111,20 +118,18 @@
                                     <i class="fas fa-step-forward"></i>
                                 </button>
                             {:else}
-                                <button class="player-controls-btn" on:click={next(player, $currentItem$)} disabled='{!$hasNext$}'>
+                                <button class="player-controls-btn completed" on:click={next(player, $currentItem$)}
+                                        disabled='{!$hasNext$}'>
                                     <i class="fas fa-check"></i>
                                 </button>
                             {/if}
                         {/if}
                     </div>
                 {/if}
-
             </div>
-            {#if ($currentItem$)}
-                <div class="playlist-content-title flex flex-row justify-start items-center m-1 ml-3">
-                    {$currentItem$.snippet.title}
-                </div>
-            {/if}
+            <div class="playlist-content-notes flex flex-row justify-center items-center">
+                <Notes state={course}></Notes>
+            </div>
         {:else}
             <div>Loading...</div>
         {/if}

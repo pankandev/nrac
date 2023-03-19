@@ -1,7 +1,7 @@
 import PlayerFactory from "youtube-player";
 import type {YouTubePlayer} from "youtube-player/dist/types";
 import PlayerStates from "youtube-player/dist/constants/PlayerStates";
-import {distinctUntilChanged, map, type Observable, startWith, Subject, switchMap, timer} from "rxjs";
+import {distinctUntilChanged, map, type Observable, of, startWith, Subject, switchMap, timer} from "rxjs";
 import type {PlaylistItemSnippet, PlaylistSnippet} from "../models/courses";
 import type {CourseItem} from "../models/courses";
 import type {CourseState} from "./courses";
@@ -231,7 +231,11 @@ export class CoursePlayer {
     public currentItem$(): Observable<CourseItem | null> {
         return this.statusUpdateSignal.pipe(
             startWith(null),
-            map(() => this.currentItem),
+            switchMap(() => {
+                const id = this.currentItem?.videoId;
+                return id ? this.course.watchItem(id) : of(null);
+            }),
+            map(item => item?.data ?? null),
         );
     }
 
