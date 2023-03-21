@@ -76,20 +76,27 @@
         refreshPlayer();
     }
 
-    async function onWindowKeyDown(event: KeyboardEvent) {
+    function onWindowKeyDown(event: KeyboardEvent) {
         if (!player) {
             return;
         }
+        const currentPlayer = player;
         if (event.code === 'Space') {
-            const currentStatus = await player.getStatus();
-            switch (currentStatus) {
-                case PlayerStates.PLAYING:
-                    await pause(player);
-                    break;
-                case PlayerStates.PAUSED:
-                    await resume(player);
-                    break;
+            if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) {
+                return;
             }
+            event.preventDefault();
+            currentPlayer.getStatus().then(currentStatus => {
+                    switch (currentStatus) {
+                        case PlayerStates.PLAYING:
+                            pause(currentPlayer).then();
+                            break;
+                        case PlayerStates.PAUSED:
+                            resume(currentPlayer).then();
+                            break;
+                    }
+                }
+            );
         }
     }
 </script>

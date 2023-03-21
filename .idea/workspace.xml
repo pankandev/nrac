@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d772a54d-1242-456d-8002-01f697b5424a" name="Changes" comment="feat: add notes placeholder">
+    <list default="true" id="d772a54d-1242-456d-8002-01f697b5424a" name="Changes" comment="feat: add notes styles and database">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/courses.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/courses.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/class/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/class/+page.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/class/Notes.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/class/Notes.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/class/notes.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/class/notes.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/courses.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/courses.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/db/database.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/db/database.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/youtube.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/youtube.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +145,7 @@
       <workItem from="1679166283561" duration="5482000" />
       <workItem from="1679179783189" duration="6182000" />
       <workItem from="1679184173032" duration="17879000" />
-      <workItem from="1679363852512" duration="2450000" />
+      <workItem from="1679363852512" duration="2992000" />
     </task>
     <task id="LOCAL-00001" summary="refactor: replaced angular with svelte and tauri">
       <created>1676011242761</created>
@@ -200,7 +196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679203225921</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="feat: add notes styles and database">
+      <created>1679366368666</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1679366368666</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,6 +217,7 @@
     <MESSAGE value="feat: add database" />
     <MESSAGE value="feat: add mark as completed" />
     <MESSAGE value="feat: add notes placeholder" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add notes placeholder" />
+    <MESSAGE value="feat: add notes styles and database" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add notes styles and database" />
   </component>
 </project>

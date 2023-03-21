@@ -36,7 +36,6 @@
             if (wasPlayingBeforeFocus) {
                 await player.resume();
             }
-            noteInput?.focus();
        }
     }
 
@@ -78,7 +77,18 @@
     }
 
     let noteInput: HTMLTextAreaElement | null = null;
+
+    function onKeyDown(event: KeyboardEvent) {
+        if (event.ctrlKey && event.key === 'o') {
+            event.preventDefault();
+            if (noteInput) {
+                noteInput.focus();
+            }
+        }
+    }
 </script>
+
+<svelte:window on:keydown={event => onKeyDown(event)}/>
 
 {#if state && player && $notes$}
     <div class="notes-container">
@@ -89,7 +99,7 @@
                 bind:this={noteInput}
                 disabled={disabled}
                 rows="5"
-                on:focus={() => onInputFocus()}
+                on:focus={event => onInputFocus(event)}
                 on:blur={() => onInputBlur()}
                 on:keydown={addNote}
         ></textarea>
