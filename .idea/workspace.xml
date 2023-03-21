@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d772a54d-1242-456d-8002-01f697b5424a" name="Changes" comment="feat: add notes styles and database">
+    <list default="true" id="d772a54d-1242-456d-8002-01f697b5424a" name="Changes" comment="feat: add some hotkeys">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/class/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/class/+page.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/class/Notes.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/class/Notes.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/class/notes.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/class/notes.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +143,7 @@
       <workItem from="1679166283561" duration="5482000" />
       <workItem from="1679179783189" duration="6182000" />
       <workItem from="1679184173032" duration="17879000" />
-      <workItem from="1679363852512" duration="2992000" />
+      <workItem from="1679363852512" duration="3109000" />
     </task>
     <task id="LOCAL-00001" summary="refactor: replaced angular with svelte and tauri">
       <created>1676011242761</created>
@@ -203,7 +201,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679366368666</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="feat: add some hotkeys">
+      <created>1679366907272</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1679366907272</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,6 +223,7 @@
     <MESSAGE value="feat: add mark as completed" />
     <MESSAGE value="feat: add notes placeholder" />
     <MESSAGE value="feat: add notes styles and database" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add notes styles and database" />
+    <MESSAGE value="feat: add some hotkeys" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add some hotkeys" />
   </component>
 </project>

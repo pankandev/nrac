@@ -80,8 +80,13 @@
 
     function onKeyDown(event: KeyboardEvent) {
         if (event.ctrlKey && event.key === 'o') {
+            if (!noteInput) {
+                return;
+            }
             event.preventDefault();
-            if (noteInput) {
+            if (event.target === noteInput) {
+                noteInput.blur();
+            } else {
                 noteInput.focus();
             }
         }
