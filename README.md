@@ -1,6 +1,6 @@
 # NRAC
 
-Not really an academy is a project to make the most of the courses published on YouTube. Paste the link to a playlist you are interested in and get access to new features.
+Not Really An Academy is a project to make the most of the courses published on YouTube. Paste the link to a playlist you are interested in and get access to new features.
 
 All data is stored locally and that means: No account needed!
 
