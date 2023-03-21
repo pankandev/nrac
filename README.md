@@ -1,4 +1,4 @@
-# Not Really an Academy (NRAC)
+# Not Really An Academy (NRAC)
 
 NRAC is a project to make the most of the courses published on YouTube. Paste the link to a playlist you are interested in and get access to new features.
 
