@@ -67,8 +67,10 @@ export interface CourseItem {
 }
 
 export interface Note {
-    body: string;
     author: string;
     playlistId: string;
     videoId: string;
+    content: string,
+    videoTimestampSeconds: number;
+    postTime: string;
 }

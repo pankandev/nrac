@@ -164,6 +164,17 @@ export class Collection<T extends object> {
             })
         );
     }
+
+    async add(data: T): Promise<string> {
+        await this.waitReady();
+        const ref = this.db.ref(this.path).push();
+        await ref.set({
+            ...data,
+            createdTime: DateTime.now().toISO(),
+            updatedTime: DateTime.now().toISO(),
+        });
+        return ref.key;
+    }
 }
 
 export class Database {

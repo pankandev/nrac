@@ -218,6 +218,10 @@ export class CoursePlayer {
         return this.items[this.currentVideoIndex] ?? null;
     }
 
+    public getCurrentTime(): Promise<number> {
+        return this.player.getCurrentTime();
+    }
+
     public async resume(): Promise<void> {
         await this.player.playVideo();
         this.statusUpdateSignal.next();
@@ -262,5 +266,9 @@ export class CoursePlayer {
             map(() => this.currentVideoIndex < this.items.length - 1),
             distinctUntilChanged(),
         );
+    }
+
+    public async getStatus(): Promise<PlayerStates> {
+        return this.player.getPlayerState();
     }
 }

@@ -1,8 +1,9 @@
 import {Database, OADocument} from "./db/database";
 import {COLLECTIONS} from "./db/collections";
-import type {Course, CourseItem} from "../models/courses";
+import type {Course, CourseItem, Note} from "../models/courses";
 import type {PlaylistItem, YoutubePlaylist} from "./youtube";
 import {from, lastValueFrom, map, Observable, switchMap} from "rxjs";
+import {DateTime, Duration} from "luxon";
 
 
 export class CourseState {
@@ -134,5 +135,43 @@ export class CourseState {
         await db.collection(COLLECTIONS.COURSES).subcollection(this.id, COLLECTIONS.COURSE_ITEMS).update(id, {
             completed: false,
         });
+    }
+
+    async addNote(content: string, item: CourseItem, timestampSeconds: number): Promise<string> {
+        const db = await this.waitDb;
+        const notes = db.collection(COLLECTIONS.NOTES);
+        return notes.add(
+            {
+                author: "Me",
+                playlistId: this.id,
+                videoId: item.videoId,
+                content,
+                videoTimestampSeconds: timestampSeconds,
+                postTime: DateTime.now().toISO(),
+            },
+        );
+    }
+
+    watchNotesOf(item: CourseItem): Observable<OADocument<Note>[]> {
+        const db = Database.instance;
+        return from(db).pipe(
+            switchMap(db => db
+                .collection(COLLECTIONS.NOTES)
+                .watchQuery()
+                .pipe(
+                    map(notes => notes
+                        .filter(note => note.data.videoId === item.videoId)
+                        .sort((a, b) => {
+                            return a.data.videoTimestampSeconds - b.data.videoTimestampSeconds;
+                        }),
+                    ),
+                )
+            ),
+        );
+    }
+
+    deleteNoteById(noteId: string): Promise<void> {
+        const db = Database.instance;
+        return db.then(db => db.collection(COLLECTIONS.NOTES).delete(noteId));
     }
 }

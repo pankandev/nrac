@@ -6,6 +6,7 @@
     import {CourseState} from "../../services/courses";
     import Notes from './Notes.svelte';
     import type {CourseItem} from "../../models/courses";
+    import PlayerStates from "youtube-player/dist/constants/PlayerStates";
 
     let container: HTMLDivElement | null = null;
     let player: CoursePlayer | null = null;
@@ -74,7 +75,26 @@
         await player.resume();
         refreshPlayer();
     }
+
+    async function onWindowKeyDown(event: KeyboardEvent) {
+        if (!player) {
+            return;
+        }
+        if (event.code === 'Space') {
+            const currentStatus = await player.getStatus();
+            switch (currentStatus) {
+                case PlayerStates.PLAYING:
+                    await pause(player);
+                    break;
+                case PlayerStates.PAUSED:
+                    await resume(player);
+                    break;
+            }
+        }
+    }
 </script>
+
+<svelte:window on:keydown={event => onWindowKeyDown(event)}/>
 
 <svelte:head>
     <title>Open Academy - Class</title>
@@ -128,7 +148,7 @@
                 {/if}
             </div>
             <div class="playlist-content-notes flex flex-row justify-center items-center">
-                <Notes state={course}></Notes>
+                <Notes state={course} player={player}></Notes>
             </div>
         {:else}
             <div>Loading...</div>
