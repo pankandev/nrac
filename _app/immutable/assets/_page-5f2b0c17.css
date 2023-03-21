@@ -1,0 +1,182 @@
+.class-container .playlist-content .playlist-content-player {
+  display: block;
+  width: 100%;
+  height: 420px;
+  border: none;
+  flex: 1 0 auto;
+}
+.class-container .playlist-content .playlist-content-title {
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.01);
+  padding-top: 1rem;
+}
+.class-container .playlist-content .playlist-content-controls {
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.01);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.class-container .playlist-content .playlist-content-controls button.player-controls-btn {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.2s ease-in-out;
+}
+.class-container .playlist-content .playlist-content-controls button.player-controls-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.class-container .playlist-content .playlist-content-controls button.player-controls-btn:active {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.class-container .playlist-content .playlist-content-controls button.player-controls-btn[disabled] {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+.class-container .playlist-content .playlist-content-controls button.player-controls-btn.completed {
+  color: #92e594;
+  background-color: rgba(146, 229, 148, 0.1);
+}
+.class-container .playlist-content .playlist-content-controls button.player-controls-btn.completed:hover {
+  background-color: rgba(146, 229, 148, 0.2);
+}
+.class-container .playlist-items {
+  height: 100%;
+  overflow-y: auto;
+  width: 420px;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 4px;
+}
+.class-container .playlist-items .playlist-items-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.class-container .playlist-items .playlist-items-list button.playlist-items-list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: start;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  background-blend-mode: multiply;
+  transition: background-color 0.2s ease-in-out;
+}
+.class-container .playlist-items .playlist-items-list button.playlist-items-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.class-container .playlist-items .playlist-items-list button.playlist-items-list-item:active {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.class-container .playlist-items .playlist-items-list button.playlist-items-list-item.completed {
+  background-color: rgba(146, 229, 148, 0.1);
+  font-weight: 600;
+}
+.class-container .playlist-items .playlist-items-list button.playlist-items-list-item.completed:hover {
+  background-color: rgba(146, 229, 148, 0.2);
+}
+.class-container .playlist-items .playlist-items-list button.playlist-items-list-item.completed:active {
+  background-color: rgba(146, 229, 148, 0.3);
+}
+.class-container .playlist-items .playlist-items-list button.playlist-items-list-item.active {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.class-container .playlist-items .playlist-items-list button.playlist-items-list-item.active.completed {
+  background-color: rgba(146, 229, 148, 0.3);
+}
+.class-container .playlist-items .playlist-items-list button.playlist-items-list-item button.progress-switch {
+  height: 100%;
+  opacity: 0;
+}
+.class-container .playlist-items .playlist-items-list button.playlist-items-list-item button.progress-switch.completed {
+  opacity: 1;
+}
+.class-container .playlist-items .playlist-items-list button.playlist-items-list-item button.progress-switch i {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3rem;
+  border-radius: 50%;
+  transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+.class-container .playlist-items .playlist-items-list button.playlist-items-list-item button.progress-switch:hover {
+  opacity: 1;
+}
+.class-container .playlist-items .playlist-items-list button.playlist-items-list-item button.progress-switch:hover i {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.class-container .playlist-items .playlist-items-list button.playlist-items-list-item .playlist-items-list-item-title {
+  flex: 1;
+  font-weight: 600;
+}
+.class-container .playlist-items .playlist-items-list button.playlist-items-list-item .playlist-items-list-item-duration {
+  font-weight: 600;
+}
+
+.playlist-content-notes {
+  margin: 0 10px;
+  padding: 10px;
+  flex: 1;
+}.notes-container {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.notes-container textarea.notes-textarea {
+  margin-bottom: 0.75rem;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  font-size: 1rem;
+  font-weight: 400;
+  resize: none;
+  outline: none;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.05);
+  transition: background-color 0.2s ease-in-out;
+}
+.notes-container textarea.notes-textarea:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.notes-container textarea.notes-textarea:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.notes-container textarea.notes-textarea::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.notes-container textarea.notes-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.notes-container .notes {
+  flex: 1 1 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+}
+.notes-container .notes .note {
+  margin-bottom: 0.75rem;
+  width: 100%;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(229, 229, 229, 0.4);
+}
+.notes-container .notes .note .note-body .note-content {
+  font-size: 1rem;
+  font-weight: 400;
+}
+.notes-container .notes .note .note-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+  font-weight: 400;
+}

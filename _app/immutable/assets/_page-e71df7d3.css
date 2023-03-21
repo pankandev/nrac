@@ -1,0 +1,50 @@
+.playlist-select label {
+  display: block;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+.playlist-select input.playlist-select-input {
+  padding: 5px 10px;
+  border-radius: 5px;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  color: #333;
+  text-align: center;
+}
+.playlist-select input.playlist-select-input:focus {
+  outline: none;
+  border: 1px solid #aaa;
+}
+.playlist-select input.playlist-select-input::-moz-placeholder {
+  color: #aaa;
+}
+.playlist-select input.playlist-select-input::placeholder {
+  color: #aaa;
+}
+.playlist-select input.playlist-select-input:disabled {
+  background-color: #eee;
+}
+.playlist-select button.playlist-select-button {
+  margin-top: 1rem;
+  padding: 5px 10px;
+  border-radius: 5px;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  color: #333;
+  text-align: center;
+}
+.playlist-select button.playlist-select-button:focus {
+  outline: none;
+  border: 1px solid #aaa;
+}
+.playlist-select button.playlist-select-button::-moz-placeholder {
+  color: #aaa;
+}
+.playlist-select button.playlist-select-button::placeholder {
+  color: #aaa;
+}
+.playlist-select button.playlist-select-button:disabled {
+  background-color: #eee;
+}
