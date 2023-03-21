@@ -1,18 +1,23 @@
 .class-container {
   .playlist-content {
-    height: 100vh;
-    max-height: 640px;
-
     .playlist-content-player {
+      display: block;
+      width: 100%;
+      height: 420px;
+      border: none;
+      flex: 1 0 auto;
     }
 
     .playlist-content-title {
-      height: 3rem;
       font-weight: 600;
+      background-color: rgba(255, 255, 255, 0.01);
+      padding-top: 1rem;
     }
 
     .playlist-content-controls {
-      height: 7rem;
+      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.01);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 
       button.player-controls-btn {
         width: 3rem;
@@ -32,6 +37,15 @@
         &[disabled] {
           background-color: rgba(255, 255, 255, 0.02);
         }
+
+        &.completed {
+          color: #92e594;
+          background-color: rgba(146, 229, 148, 0.1);
+
+            &:hover {
+                background-color: rgba(146, 229, 148, 0.2);
+            }
+        }
       }
     }
   }
@@ -39,13 +53,14 @@
   .playlist-items {
     height: 100%;
     overflow-y: auto;
-    width: 320px;
+    width: 420px;
     border-left: 1px solid rgba(255, 255, 255, 0.2);
     padding: 4px;
 
     .playlist-items-list {
       display: flex;
       flex-direction: column;
+      width: 100%;
 
       button.playlist-items-list-item {
         display: flex;
@@ -91,22 +106,29 @@
         }
 
         button.progress-switch {
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          align-items: center;
-          padding: 0.3rem;
-          border-radius: 50%;
-          transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+          height: 100%;
           opacity: 0;
 
           &.completed {
             opacity: 1;
           }
 
+          i {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 0.3rem;
+            border-radius: 50%;
+            transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+          }
+
           &:hover {
-            background-color: rgba(255, 255, 255, 0.2);
             opacity: 1;
+
+            i {
+              background-color: rgba(255, 255, 255, 0.2);
+            }
           }
         }
 
@@ -121,4 +143,10 @@
       }
     }
   }
+}
+
+.playlist-content-notes {
+  margin: 0 10px;
+  padding: 10px;
+  flex: 1;
 }
