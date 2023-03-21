@@ -19,6 +19,10 @@ New features are planned:
 - [ ] 🟢 Allow renaming of courses videos (locally)
 - [ ] 🟡 Add support for new content types between videos. e.g. Text
 
+The colors mean:
+- 🟢: Will do
+- 🟡: Maybe?
+
 ## Contributing
 
 Coming soon...
