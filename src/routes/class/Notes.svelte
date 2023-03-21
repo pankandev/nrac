@@ -18,7 +18,14 @@
         if (event.key !== 'Enter') {
             return;
         }
+        if (event.shiftKey) {
+            return;
+        }
         if (!player) {
+            return;
+        }
+        if (newNote === '') {
+            event.preventDefault();
             return;
         }
         const currentItem = player.currentItem;
