@@ -30,7 +30,7 @@ jobs:
       - name: Store /build folder as artifact
         uses: actions/upload-artifact@v2
         with:
-          name: build
+          name: github-pages
           path: build
       - name: Deploy to GitHub Pages
         id: deployment
