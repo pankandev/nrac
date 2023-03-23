@@ -104,7 +104,7 @@
 <svelte:window on:keydown={event => onWindowKeyDown(event)}/>
 
 <svelte:head>
-    <title>Open Academy - Class</title>
+    <title>Not Really an Academy - Class</title>
     <meta name="description" content="Open Academy is a free, open-source platform for online learning.">
 </svelte:head>
 

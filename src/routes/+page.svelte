@@ -1,5 +1,5 @@
 <svelte:head>
-    <title>Open Academy</title>
+    <title>Not Really an Academy</title>
     <meta name="description" content="Open Academy is a free, open-source platform for online learning.">
 </svelte:head>
 
@@ -23,27 +23,34 @@
 </script>
 
 <section class="playlist-select p-10 flex flex-col items-center justify-center h-full">
-    <img src="/images/logo.svg" alt="Logo" class="w-32 mb-10"/>
-    <label for="playlist-select-input">
-        Enter a YouTube playlist URL to get started.
-
-        <!--
-        https://www.youtube.com/playlist?list=PL4cUxeGkcC9gcy9lrvMJ75z9maRw4byYp
-        -->
-    </label>
-    <input
-            id="playlist-select-input"
-            class="playlist-select-input"
-            type="text"
-            placeholder="Enter a YouTube playlist URL"
-            bind:value={url}
-    />
-    {#if (playlistId)}
-        <a
-                class="playlist-select-button"
-                href="/class?list={playlistId}"
-        >
-            Enroll
-        </a>
-    {/if}
+    <img src="/images/logo-light.svg" alt="Logo" class="w-32 mb-10"/>
+    <form class="playlist-select-form">
+        <label for="playlist-select-input">
+            Enter a YouTube playlist URL to get started.
+        </label>
+        <div class="playlist-select-input-wrapper">
+            <input
+                    id="playlist-select-input"
+                    class="playlist-select-input"
+                    type="text"
+                    placeholder="Enter a YouTube playlist URL"
+                    bind:value={url}
+            />
+            {#if (playlistId)}
+                <button
+                        class="enroll-button"
+                        on:click="{() => window.location.href = `/class?list=${playlistId}`}"
+                >
+                    Enroll
+                </button>
+            {:else}
+                <button
+                        class="enroll-button"
+                        disabled
+                >
+                    Enroll
+                </button>
+            {/if}
+        </div>
+    </form>
 </section>

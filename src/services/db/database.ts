@@ -7,7 +7,7 @@ export type Modeled<T extends object> = T & {
     updatedTime?: string;
 };
 
-export class OADocument<T extends object> {
+export class NRACDocument<T extends object> {
     public get id(): string {
         return this.ref.key;
     }
@@ -20,14 +20,14 @@ export class OADocument<T extends object> {
     ) {
     }
 
-    public static fromSnapshot<T extends object>(snap: DataSnapshot): OADocument<T> | null {
+    public static fromSnapshot<T extends object>(snap: DataSnapshot): NRACDocument<T> | null {
         const data: Modeled<T> = snap.val();
         if (!data) {
             return null;
         }
         const createdTime = data.createdTime ? DateTime.fromISO(data.createdTime) : DateTime.now();
         const updatedTime = data.updatedTime ? DateTime.fromISO(data.updatedTime) : DateTime.now();
-        return new OADocument<T>(snap.ref, data, createdTime, updatedTime);
+        return new NRACDocument<T>(snap.ref, data, createdTime, updatedTime);
     }
 }
 
@@ -60,13 +60,13 @@ export class Collection<T extends object> {
         return this.db.ref(`${this.path}/${id}`);
     }
 
-    public async get(id: string): Promise<OADocument<T> | null> {
+    public async get(id: string): Promise<NRACDocument<T> | null> {
         await this.waitReady();
         const snap = await this.ref(id).get();
         if (!snap) {
             return null;
         }
-        return OADocument.fromSnapshot<T>(snap);
+        return NRACDocument.fromSnapshot<T>(snap);
     }
 
     public async update(id: string, data: Partial<T>): Promise<void> {
@@ -91,13 +91,13 @@ export class Collection<T extends object> {
         await this.ref(id).remove();
     }
 
-    public async list(): Promise<OADocument<T>[]> {
+    public async list(): Promise<NRACDocument<T>[]> {
         await this.waitReady();
 
-        const docs: OADocument<T>[] = [];
+        const docs: NRACDocument<T>[] = [];
         await this.db.ref(this.path).forEach(
             snap => {
-                const doc = OADocument.fromSnapshot<T>(snap);
+                const doc = NRACDocument.fromSnapshot<T>(snap);
                 if (doc) {
                     docs.push(doc);
                 }
@@ -110,28 +110,28 @@ export class Collection<T extends object> {
         return new Collection<U>(`${this.path}/${id}/${key.name}`, this.db);
     }
 
-    watchById(id: string): Observable<OADocument<T> | null> {
-        return new Observable<OADocument<T> | null>(subscriber => {
+    watchById(id: string): Observable<NRACDocument<T> | null> {
+        return new Observable<NRACDocument<T> | null>(subscriber => {
             const ref = this.ref(id);
             const handler = (snap: DataSnapshot) => {
                 if (!snap) {
                     subscriber.next(null);
                     return;
                 }
-                subscriber.next(OADocument.fromSnapshot<T>(snap));
+                subscriber.next(NRACDocument.fromSnapshot<T>(snap));
             };
             ref.on("value", handler);
             return () => ref.off("value", handler);
         });
     }
 
-    watchQuery(): Observable<OADocument<T>[]> {
-        return new Observable<OADocument<T>[]>(subscriber => {
+    watchQuery(): Observable<NRACDocument<T>[]> {
+        return new Observable<NRACDocument<T>[]>(subscriber => {
             const ref = this.db.ref(this.path);
             const handler = (snap: DataSnapshot) => {
-                const docs: OADocument<T>[] = [];
+                const docs: NRACDocument<T>[] = [];
                 snap.forEach(snap => {
-                    const doc = OADocument.fromSnapshot<T>(snap)
+                    const doc = NRACDocument.fromSnapshot<T>(snap)
                     if (doc) {
                         docs.push(doc);
                     }
@@ -147,14 +147,14 @@ export class Collection<T extends object> {
         );
     }
 
-    query(limit = 100): Observable<OADocument<T>[]> {
+    query(limit = 100): Observable<NRACDocument<T>[]> {
         return from(
             this.db.ref(this.path).query().take(limit).get()
         ).pipe(
             map(snaps => {
-                const docs: OADocument<T>[] = [];
+                const docs: NRACDocument<T>[] = [];
                 snaps.forEach(snap => {
-                    const doc = OADocument.fromSnapshot<T>(snap)
+                    const doc = NRACDocument.fromSnapshot<T>(snap)
                     if (doc) {
                         docs.push(doc);
                     }

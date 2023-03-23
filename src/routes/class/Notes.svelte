@@ -3,7 +3,7 @@
     import {CourseState} from "../../services/courses";
     import {CoursePlayer} from "../../services/youtube";
     import {Observable, of, switchMap} from "rxjs";
-    import {OADocument} from "../../services/db/database";
+    import {NRACDocument} from "../../services/db/database";
     import type {Note} from "../../models/courses";
     import {Duration} from "luxon";
     import PlayerStates from "youtube-player/dist/constants/PlayerStates";
@@ -48,7 +48,7 @@
 
     let wasPlayingBeforeFocus = false;
 
-    function watchNotes(player: CoursePlayer, state: CourseState): Observable<OADocument<Note>[]> {
+    function watchNotes(player: CoursePlayer, state: CourseState): Observable<NRACDocument<Note>[]> {
         return player.currentItem$().pipe(
             switchMap(item => item ? state.watchNotesOf(item) : of(null)),
         );

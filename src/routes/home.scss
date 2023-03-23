@@ -1,55 +1,66 @@
 
 .playlist-select {
-  label {
-    display: block;
-    margin-bottom: 2rem;
-    font-size: 1.5rem;
-  }
+  form.playlist-select-form {
+    @apply w-full flex flex-col items-stretch justify-center;
 
-  input.playlist-select-input {
-    padding: 5px 10px;
-    border-radius: 5px;
-    width: 100%;
-    background-color: white;
-    border: 1px solid #ccc;
-    color: #333;
-    text-align: center;
-
-    &:focus {
-      outline: none;
-      border: 1px solid #aaa;
+    label {
+      display: block;
+      margin-bottom: 2rem;
+      font-size: 1.5rem;
+      text-align: center;
     }
 
-    &::placeholder {
-      color: #aaa;
-    }
+    .playlist-select-input-wrapper {
+      @apply flex flex-row items-stretch justify-center;
 
-    &:disabled {
-      background-color: #eee;
-    }
-  }
+      input.playlist-select-input {
+        @apply flex-grow;
 
-  button.playlist-select-button {
-    margin-top: 1rem;
-    padding: 5px 10px;
-    border-radius: 5px;
-    width: 100%;
-    background-color: white;
-    border: 1px solid #ccc;
-    color: #333;
-    text-align: center;
+        padding: 5px 10px;
+        border-radius: 5px 0 0 5px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: none;
+        color: #333;
+        text-align: center;
 
-    &:focus {
-      outline: none;
-      border: 1px solid #aaa;
-    }
+        &:focus {
+          outline: none;
+          border: 1px solid #aaa;
+        }
 
-    &::placeholder {
-      color: #aaa;
-    }
+        &::placeholder {
+          color: #aaa;
+        }
 
-    &:disabled {
-      background-color: #eee;
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+          background-color: red;
+        }
+      }
+
+      button.enroll-button {
+        @apply bg-accent text-secondary;
+
+        width: 100px;
+        padding: 5px 10px;
+        border-radius: 0 5px 5px 0;
+        text-align: center;
+
+        &:focus {
+          outline: none;
+          border: 1px solid #aaa;
+        }
+
+        &::placeholder {
+          color: #aaa;
+        }
+
+        &:disabled {
+          @apply bg-accent bg-opacity-70;
+        }
+      }
     }
   }
 }

@@ -5,7 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d772a54d-1242-456d-8002-01f697b5424a" name="Changes" comment="feat: add deploy workflow">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/logo-light.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Header.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Header.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/class/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/class/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/class/Notes.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/class/Notes.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/header.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/home.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/home.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/courses.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/courses.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/db/database.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/db/database.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/logo-dark.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.cjs" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.cjs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,26 +52,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/pcamp/WebstormProjects/classroom-tube/src/routes&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.TypeScript&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\pcamp\\WebstormProjects\\classroom-tube\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/pcamp/WebstormProjects/classroom-tube/static/images",
+    "list.type.of.created.stylesheet": "SCSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "yarn",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.TypeScript",
+    "ts.external.directory.path": "C:\\Users\\pcamp\\WebstormProjects\\classroom-tube\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\pcamp\WebstormProjects\classroom-tube\static\images" />
       <recent name="C:\Users\pcamp\WebstormProjects\classroom-tube\src\routes" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -146,6 +159,7 @@
       <workItem from="1679184173032" duration="17879000" />
       <workItem from="1679363852512" duration="3364000" />
       <workItem from="1679443861526" duration="270000" />
+      <workItem from="1679545997086" duration="1830000" />
     </task>
     <task id="LOCAL-00001" summary="refactor: replaced angular with svelte and tauri">
       <created>1676011242761</created>

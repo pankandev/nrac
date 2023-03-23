@@ -1,4 +1,4 @@
-import {Database, OADocument} from "./db/database";
+import {Database, NRACDocument} from "./db/database";
 import {COLLECTIONS} from "./db/collections";
 import type {Course, CourseItem, Note} from "../models/courses";
 import type {PlaylistItem, YoutubePlaylist} from "./youtube";
@@ -88,21 +88,21 @@ export class CourseState {
         return courseItems;
     }
 
-    public watch(): Observable<OADocument<Course> | null> {
+    public watch(): Observable<NRACDocument<Course> | null> {
         const db = Database.instance;
         return from(db).pipe(
             switchMap(db => db.collection(COLLECTIONS.COURSES).watchById(this.id)),
         );
     }
 
-    public watchItem(id: string): Observable<OADocument<CourseItem> | null> {
+    public watchItem(id: string): Observable<NRACDocument<CourseItem> | null> {
         const db = Database.instance;
         return from(db).pipe(
             switchMap(db => db.collection(COLLECTIONS.COURSES).subcollection(this.id, COLLECTIONS.COURSE_ITEMS).watchById(id)),
         );
     }
 
-    public watchItems(): Observable<OADocument<CourseItem>[]> {
+    public watchItems(): Observable<NRACDocument<CourseItem>[]> {
         const db = Database.instance;
         return from(db).pipe(
             switchMap(db => db
@@ -114,7 +114,7 @@ export class CourseState {
         );
     }
 
-    async getAllItems(): Promise<OADocument<CourseItem>[]> {
+    async getAllItems(): Promise<NRACDocument<CourseItem>[]> {
         const db = await this.waitDb;
         return lastValueFrom(
             db.collection(COLLECTIONS.COURSES).subcollection(this.id, COLLECTIONS.COURSE_ITEMS).query().pipe(
@@ -152,7 +152,7 @@ export class CourseState {
         );
     }
 
-    watchNotesOf(item: CourseItem): Observable<OADocument<Note>[]> {
+    watchNotesOf(item: CourseItem): Observable<NRACDocument<Note>[]> {
         const db = Database.instance;
         return from(db).pipe(
             switchMap(db => db
