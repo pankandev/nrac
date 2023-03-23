@@ -71,6 +71,7 @@ export class Collection<T extends object> {
 
     public async update(id: string, data: Partial<T>): Promise<void> {
         await this.waitReady();
+        console.log("update", id, data);
         await this.ref(id).update({
             ...data,
             updatedTime: DateTime.now().toISO(),

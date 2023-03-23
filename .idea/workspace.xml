@@ -4,20 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d772a54d-1242-456d-8002-01f697b5424a" name="Changes" comment="feat: add deploy workflow">
-      <change afterPath="$PROJECT_DIR$/static/images/logo-light.svg" afterDir="false" />
+    <list default="true" id="d772a54d-1242-456d-8002-01f697b5424a" name="Changes" comment="style: add styles">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/courses.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/courses.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+page.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/Header.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Header.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/class/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/class/+page.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/class/Notes.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/class/Notes.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/header.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/home.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/home.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/courses.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/courses.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/db/database.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/db/database.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/logo-dark.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.cjs" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.cjs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +31,7 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="develop" />
@@ -159,7 +154,7 @@
       <workItem from="1679184173032" duration="17879000" />
       <workItem from="1679363852512" duration="3364000" />
       <workItem from="1679443861526" duration="270000" />
-      <workItem from="1679545997086" duration="1830000" />
+      <workItem from="1679545997086" duration="4746000" />
     </task>
     <task id="LOCAL-00001" summary="refactor: replaced angular with svelte and tauri">
       <created>1676011242761</created>
@@ -245,7 +240,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679444438364</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="style: add styles">
+      <created>1679547906855</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1679547906855</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,6 +265,7 @@
     <MESSAGE value="feat: add some hotkeys" />
     <MESSAGE value="feat: add focus switch with ctrl+o key" />
     <MESSAGE value="feat: add deploy workflow" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add deploy workflow" />
+    <MESSAGE value="style: add styles" />
+    <option name="LAST_COMMIT_MESSAGE" value="style: add styles" />
   </component>
 </project>

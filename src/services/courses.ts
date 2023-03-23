@@ -29,6 +29,7 @@ export class CourseState {
             description: playlist.description,
             thumbnailUrl: playlist.thumbnails.default.url,
             snippet: playlist,
+            lastAccessed: DateTime.now().toISO(),
         };
 
         const videos = await this.playlist.getVideos();
@@ -38,6 +39,9 @@ export class CourseState {
 
         const item = await courses.get(this.id);
         if (item) {
+            await courses.update(this.id, {
+                lastAccessed: DateTime.now().toISO(),
+            });
             return true;
         }
 

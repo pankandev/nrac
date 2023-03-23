@@ -52,6 +52,7 @@ export interface Course {
     description: string;
     thumbnailUrl: string;
     snippet: PlaylistSnippet;
+    lastAccessed: string;
 }
 
 export interface CourseItem {

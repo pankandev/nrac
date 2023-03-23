@@ -1,13 +1,27 @@
 
 .playlist-select {
+
   form.playlist-select-form {
     @apply w-full flex flex-col items-stretch justify-center;
+    height: 80vh;
 
-    label {
-      display: block;
-      margin-bottom: 2rem;
-      font-size: 1.5rem;
-      text-align: center;
+    .logo-wrapper {
+      @apply flex flex-row items-center justify-center mb-10;
+      .logo {
+        @apply w-32;
+      }
+    }
+
+    .label-wrapper {
+      @apply flex flex-row items-center justify-center;
+      label {
+        display: block;
+        margin-bottom: 2rem;
+        font-size: 1.5rem;
+        text-align: center;
+        width: 100%;
+        max-width: 700px;
+      }
     }
 
     .playlist-select-input-wrapper {
@@ -16,12 +30,16 @@
       input.playlist-select-input {
         @apply flex-grow;
 
-        padding: 5px 10px;
+        padding: 5px 10px 5px 10px;
         border-radius: 5px 0 0 5px;
         background-color: rgba(255, 255, 255, 0.1);
         border: none;
-        color: #333;
+        color: white;
         text-align: center;
+
+        @media screen and (min-width: 768px) {
+          padding: 5px 10px 5px 100px
+        }
 
         &:focus {
           outline: none;
@@ -59,6 +77,51 @@
 
         &:disabled {
           @apply bg-accent bg-opacity-70;
+        }
+      }
+    }
+  }
+}
+
+.enrolled-classes {
+  @apply flex flex-col items-stretch justify-center w-full mt-2;
+  h3 {
+    @apply text-left text-2xl mb-5;
+  }
+
+  .enrolled-classes-list {
+    @apply grid md:grid-cols-3 lg:grid-cols-4 gap-5;
+
+    a.enrolled-class {
+      @apply bg-secondary bg-opacity-80 rounded-lg transition duration-300 ease-in-out relative;
+      background-position: center;
+      background-size: cover;
+      aspect-ratio: 16/9;
+      transform: scale(1);
+      overflow: hidden;
+
+      &:hover {
+        @apply bg-opacity-100;
+        transform: scale(1.05);
+      }
+
+      > * {
+        @apply absolute w-full h-full;
+      }
+
+      .enrolled-class-bg {
+        background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+      }
+
+      .enrolled-class-title-wrapper {
+        @apply text-center text-white text-2xl p-5 flex flex-col justify-end items-start;
+
+        .enrolled-class-title {
+          @apply text-2xl;
+        }
+
+        .enrolled-class-date {
+          @apply text-sm;
         }
       }
     }
