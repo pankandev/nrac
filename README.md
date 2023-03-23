@@ -17,6 +17,7 @@ New features are planned:
 - [ ] 🟢 Add markdown support for notes.
 - [ ] 🟢 Allow splitting a course by chapters.
 - [ ] 🟢 Allow renaming of courses videos (locally)
+- [ ] 🟢 Highlight notes close to the current timestamp of the video
 - [ ] 🟡 Add support for new content types between videos. e.g. Text
 
 The colors mean:

@@ -1,5 +1,5 @@
 {
-	"name": "classroom-tube",
+	"name": "nrac",
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "vite dev",
@@ -10,6 +10,9 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
 		"lint": "eslint ."
+	},
+	"engine": {
+		"node": 18
 	},
 	"devDependencies": {
 		"@fontsource/fira-mono": "^4.5.10",
