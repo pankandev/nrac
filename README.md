@@ -13,11 +13,10 @@ All data is stored locally and that means: No account needed!
 
 New features are planned:
 
-- [ ] 🟢 Navigate through all your "enrolled" courses
 - [ ] 🟢 Add markdown support for notes.
-- [ ] 🟢 Allow splitting a course by chapters.
-- [ ] 🟢 Allow renaming of courses videos (locally)
-- [ ] 🟢 Highlight notes close to the current timestamp of the video
+- [ ] 🟡 Allow splitting a course by chapters.
+- [ ] 🟡 Allow renaming of courses videos (locally)
+- [ ] 🟡 Highlight notes close to the current timestamp of the video
 - [ ] 🟡 Add support for new content types between videos. e.g. Text
 
 The colors mean:
